@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                        <div class="w-100">
+                            <img src="~/login.webp" width="100%"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 m-auto">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger small">Invalid login credentials!</div>
+                            }
+                            <form class="user" method="post" action="/auth/login">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="Username" name="Username" placeholder="Enter Username..." value="@Model?.Username">
+                                    @if (ViewData.ModelState["Username"]?.Errors.Count > 0)
+                                    {
+                                        <span class="small" style="color:red;">@ViewData.ModelState["Username"]?.Errors[0].ErrorMessage</span>
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" id="Password" name="Password" placeholder="Password" value="@Model?.Password">
+                                    @if (ViewData.ModelState["Password"]?.Errors.Count > 0)
+                                    {
+                                        <span class="small" style="color:red;">@ViewData.ModelState["Password"]?.Errors[0].ErrorMessage</span>
+                                    }
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Login
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
